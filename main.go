@@ -1,0 +1,19 @@
+package main
+
+import (
+	"log"
+
+	"github.com/brotherlogic/tasklister/server"
+)
+
+func main() {
+	s := server.NewServer()
+	err := s.Test()
+	if err != nil {
+		log.Fatalf("Error testing: %v", err)
+	}
+
+	// Keep the server running
+	for true {
+	}
+}
