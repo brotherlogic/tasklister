@@ -13,6 +13,8 @@ func main() {
 		log.Fatalf("Error testing: %v", err)
 	}
 
+	log.Printf("Server started successfully")
+
 	// Keep the server running
 	for true {
 	}
