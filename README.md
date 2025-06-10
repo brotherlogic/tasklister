@@ -1,3 +1,3 @@
 # tasklister
 
-Kubernetes based tasklist manager that interfaces with markdown as a DB
+Kubernetes based tasklist manager that interfaces with markdown as a DB.
