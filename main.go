@@ -7,6 +7,7 @@ import (
 )
 
 func main() {
+	log.Printf("Starting")
 	s := server.NewServer()
 	err := s.Test()
 	if err != nil {

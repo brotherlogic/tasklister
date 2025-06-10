@@ -16,6 +16,7 @@ func NewServer() *Server {
 
 func (s *Server) Test() error {
 	// Get a tmp directory
+	log.Printf("Checking out")
 	tDir, err := os.MkdirTemp("", "gitcheckout")
 	if err != nil {
 		return err
