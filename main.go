@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"os"
 
 	"github.com/brotherlogic/tasklister/server"
 )
@@ -9,7 +10,7 @@ import (
 func main() {
 	log.Printf("Starting")
 	s := server.NewServer()
-	err := s.Test()
+	err := s.Test(os.Getenv("DEPLOY_KEY"))
 	if err != nil {
 		log.Fatalf("Error testing: %v", err)
 	}
