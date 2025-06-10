@@ -1,7 +1,9 @@
 package server
 
 import (
+	"log"
 	"os"
+	"time"
 
 	"github.com/go-git/go-git/v5"
 )
@@ -18,9 +20,12 @@ func (s *Server) Test() error {
 	if err != nil {
 		return err
 	}
+
+	t1 := time.Now()
 	_, err = git.PlainClone(tDir, false, &git.CloneOptions{
 		URL: "https://github.com/brotherlogic/tasklister",
 	})
+	log.Printf("Took %v to clone", time.Since(t1))
 
 	return err
 }
