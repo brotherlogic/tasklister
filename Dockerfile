@@ -16,6 +16,8 @@ COPY *.go ./
 
 RUN CGO_ENABLED=0 go build -o /tasklister
 
+RUN ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -N ""
+
 ##
 ## Deploy
 ##
@@ -24,6 +26,6 @@ USER root:root
 
 WORKDIR /
 COPY --from=build /tasklister /tasklister
-
+COPY --from=build ~/.ssh ~/.ssh
 
 ENTRYPOINT ["/tasklister"]
