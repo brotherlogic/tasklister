@@ -15,7 +15,7 @@ func main() {
 		log.Fatalf("Error testing: %v", err)
 	}
 
-	log.Printf("Server started successfully")
+	log.Printf("Tasklister started")
 
 	// Keep the server running
 	for true {
