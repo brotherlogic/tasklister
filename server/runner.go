@@ -23,7 +23,7 @@ func (s *Server) Test(keyFromEnv string) error {
 	// See https://github.com/src-d/go-git/issues/637
 	publicKey, err := ssh.NewPublicKeys("git", []byte(key), "")
 	if err != nil {
-		log.Fatalf("creating ssh auth method: %v", err)
+		log.Fatalf("creating ssh auth method: %v -> %v", err, key)
 	}
 
 	// Get a tmp directory
