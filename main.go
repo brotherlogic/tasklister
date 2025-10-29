@@ -12,7 +12,7 @@ func main() {
 	s := server.NewServer()
 	err := s.Test(os.Getenv("DEPLOY_KEY"))
 	if err != nil {
-		log.Fatalf("Error testing: %v", err)
+		log.Fatalf("Error testing: % v -> %v", err, os.Getenv("DEPLOY_KEY"))
 	}
 
 	log.Printf("Tasklister started")
