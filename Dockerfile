@@ -26,6 +26,6 @@ USER root:root
 
 WORKDIR /
 COPY --from=build /tasklister /tasklister
-RUN echo "" > ~/.known
+RUN echo "" > /known_hosts
 
 ENTRYPOINT ["/tasklister"]
