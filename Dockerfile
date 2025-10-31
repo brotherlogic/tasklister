@@ -10,6 +10,8 @@ COPY go.sum ./
 RUN mkdir server
 COPY server/*.go ./server/
 
+
+
 RUN go mod download
 
 COPY *.go ./
@@ -24,5 +26,6 @@ USER root:root
 
 WORKDIR /
 COPY --from=build /tasklister /tasklister
+RUN echo "" > ~/.known
 
 ENTRYPOINT ["/tasklister"]
