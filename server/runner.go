@@ -1,6 +1,7 @@
 package server
 
 import (
+	"fmt"
 	"log"
 	"os"
 	"strings"
@@ -14,6 +15,20 @@ type Server struct{}
 
 func NewServer() *Server {
 	return &Server{}
+}
+
+func writeString(filename, text string) error {
+	f, err := os.OpenFile(filename, os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0600)
+	if err != nil {
+		return err
+	}
+
+	defer f.Close()
+
+	if _, err = f.WriteString(text); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (s *Server) Test(keyFromEnv string) error {
@@ -40,5 +55,7 @@ func (s *Server) Test(keyFromEnv string) error {
 	})
 	log.Printf("Took %v to clone", time.Since(t1))
 
+	// Update a file
+	err = writeString(fmt.Sprintf("%v/%v", tDir, "test.txt"), "Hello\n")
 	return err
 }
