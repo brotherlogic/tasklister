@@ -54,6 +54,9 @@ func (s *Server) Test(keyFromEnv string) error {
 		URL:  "git@github.com:brotherlogic/tasklister.git",
 	})
 	log.Printf("Took %v to clone", time.Since(t1))
+	if err != nil {
+		return fmt.Errorf("error in clone: %w", err)
+	}
 
 	// Update a file
 	err = writeString(fmt.Sprintf("%v/%v", tDir, "test.txt"), "Hello\n")
