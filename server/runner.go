@@ -49,7 +49,7 @@ func (s *Server) Test(keyFromEnv string) error {
 	}
 
 	t1 := time.Now()
-	_, err = git.PlainClone(tDir, false, &git.CloneOptions{
+	repo, err := git.PlainClone(tDir, false, &git.CloneOptions{
 		Auth: publicKey,
 		URL:  "git@github.com:brotherlogic/tasklister.git",
 	})
@@ -57,5 +57,21 @@ func (s *Server) Test(keyFromEnv string) error {
 
 	// Update a file
 	err = writeString(fmt.Sprintf("%v/%v", tDir, "test.txt"), "Hello\n")
+	if err != nil {
+		return err
+	}
+
+	// Commit the change
+	w, err := repo.Worktree()
+	if err != nil {
+		return err
+	}
+
+	w.Commit("Updating tasklist", &git.CommitOptions{})
+
+	err = repo.Push(&git.PushOptions{
+		RemoteName: "origin",
+		Auth:       publicKey,
+	})
 	return err
 }
