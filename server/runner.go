@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/go-git/go-git/v5"
+	"github.com/go-git/go-git/v5/plumbing/object"
 	"github.com/go-git/go-git/v5/plumbing/transport/ssh"
 )
 
@@ -70,7 +71,11 @@ func (s *Server) Test(keyFromEnv string) error {
 		return fmt.Errorf("error in worktree: %w", err)
 	}
 
-	_, err = w.Commit("Updating tasklist", &git.CommitOptions{})
+	_, err = w.Commit("Updating tasklist", &git.CommitOptions{
+		Author: &object.Signature{
+			Name:  "tasklister",
+			Email: "tasklister@brotherlogic.com",
+		}})
 	if err != nil {
 		return fmt.Errorf("error in commit: %w", err)
 	}
