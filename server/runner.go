@@ -70,6 +70,10 @@ func (s *Server) Test(keyFromEnv string) error {
 	if err != nil {
 		return fmt.Errorf("error in worktree: %w", err)
 	}
+	_, err = w.Add(fmt.Sprintf("%v/%v", tDir, "test.txt"))
+	if err != nil {
+		return fmt.Errorf("error in add: %w", err)
+	}
 
 	_, err = w.Commit("Updating tasklist", &git.CommitOptions{
 		Author: &object.Signature{
