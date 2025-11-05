@@ -58,20 +58,26 @@ func (s *Server) Test(keyFromEnv string) error {
 	// Update a file
 	err = writeString(fmt.Sprintf("%v/%v", tDir, "test.txt"), "Hello\n")
 	if err != nil {
-		return err
+		return fmt.Errorf("error writing string: %w", err)
 	}
 
 	// Commit the change
 	w, err := repo.Worktree()
 	if err != nil {
-		return err
+		return fmt.Errorf("error in worktree: %w", err)
 	}
 
-	w.Commit("Updating tasklist", &git.CommitOptions{})
+	_, err = w.Commit("Updating tasklist", &git.CommitOptions{})
+	if err != nil {
+		return fmt.Errorf("error in commit: %w", err)
+	}
 
 	err = repo.Push(&git.PushOptions{
 		RemoteName: "origin",
 		Auth:       publicKey,
 	})
-	return err
+	if err != nil {
+		return fmt.Errorf("Error in push: %w", err)
+	}
+	return nil
 }
