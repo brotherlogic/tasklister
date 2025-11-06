@@ -31,10 +31,12 @@ func main() {
 		log.Fatalf("Unable to write ssh entry: %v", err)
 	}
 
+	/* This piece is working:
+
 	err = s.Test(os.Getenv("DEPLOY_KEY"))
 	if err != nil {
 		log.Fatalf("Error testing: % v -> %v", err, os.Getenv(("SSH_KNOWN_HOSTS")))
-	}
+	}*/
 
 	log.Printf("Tasklister started")
 
