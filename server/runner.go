@@ -79,6 +79,7 @@ func (s *Server) Test(keyFromEnv string) error {
 		Author: &object.Signature{
 			Name:  "tasklister",
 			Email: "tasklister@brotherlogic.com",
+			When:  time.Now(),
 		}})
 	if err != nil {
 		return fmt.Errorf("error in commit: %w", err)
