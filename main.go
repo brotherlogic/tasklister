@@ -38,7 +38,7 @@ func main() {
 		log.Fatalf("Error testing: % v -> %v", err, os.Getenv(("SSH_KNOWN_HOSTS")))
 	}*/
 
-	log.Printf("Tasklister started")
+	log.Printf("Tasklister started: %v", s)
 
 	// Keep the server running
 	for true {
